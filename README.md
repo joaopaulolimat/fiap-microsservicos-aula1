@@ -6,21 +6,21 @@ Criamos uma api REST, com conexão com o mongodb.
 
 ### Pacotes utilizados na primeira aula
 
-import express from "express";
+- import express from "express";
 
--> criação das rotas
+- - criação das rotas
 
-import helmet from "helmet";
+- import helmet from "helmet";
 
--> simplificar request/response
+- - simplificar request/response
 
-import morgan from "morgan";
+- import morgan from "morgan";
 
--> verificar origem dos requisi'ões
+- - verificar origem dos requisições
 
-import cors from "cors";
+- import cors from "cors";
 
--> autorização de requests, camada de segurança. Habilitar solicitações entre origens.
+- - autorização de requests, camada de segurança. Habilitar solicitações entre origens.
 
 ### Em casa
 
