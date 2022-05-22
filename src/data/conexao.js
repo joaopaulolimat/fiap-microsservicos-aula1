@@ -1,10 +1,8 @@
 import mongoose from "mongoose";
-import { config } from "dotenv";
-config();
+import { config } from "../config/settings.js";
 
 export const databaseConnect = () => {
-  const urldb = process.env.MONGO_CONNECTION;
-  mongoose.connect(urldb, {
+  mongoose.connect(config.dbPath, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
