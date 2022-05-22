@@ -1,10 +1,12 @@
-const express = require("express");
-const helmet = require("helmet");
-const morgan = require("morgan");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+import cors from "cors";
+
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import { databaseConnect } from "./src/config/databaseConnection.js";
+import { Cliente } from "./src/modules/user/repository/index.js";
 
 const app = express();
 
@@ -13,21 +15,7 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("combined"));
 
-const urldb =
-  "mongodb+srv://joao:123@cluster0.8g10p.mongodb.net/database?retryWrites=true&w=majority";
-mongoose.connect(urldb, { useNewUrlParser: true, useUnifiedTopology: true });
-
-const schema = new mongoose.Schema({
-  nome: { type: String, require: true },
-  email: { type: String, require: true },
-  cpf: { type: String, require: true, unique: true },
-  telefone: { type: String, require: true },
-  usuario: { type: String, require: true, unique: true },
-  senha: { type: String, require: true },
-  datacadastro: { type: Date, default: Date.now() },
-});
-
-const Cliente = mongoose.model("cliente", schema);
+databaseConnect();
 
 app.get("/", (req, res) => {
   Cliente.find((erro, result) => {
