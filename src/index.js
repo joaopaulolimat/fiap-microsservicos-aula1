@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { databaseConnect } from "./data/conexao.js";
 import { clientesRoute } from "./routes/clientes.js";
+import { notFound } from "./middleware/notFound.js";
 
 const app = express();
 
@@ -16,7 +17,8 @@ app.use(morgan("combined"));
 
 app.use(cors());
 
-app.use("/", clientesRoute);
 databaseConnect();
+app.use("/clientes", clientesRoute);
+app.use(notFound);
 
 app.listen(3001, () => console.log("Server on-line. Listen on port 3001"));
