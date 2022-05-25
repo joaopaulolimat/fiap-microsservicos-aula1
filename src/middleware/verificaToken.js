@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { config } from "../config/settings.js";
 
-export const verificaToken = (req, res) => {
+export const verificaToken = (req, res, next) => {
   const tokenEnviado = req.headers.token;
 
   if (!tokenEnviado) {
@@ -19,4 +19,5 @@ export const verificaToken = (req, res) => {
       email,
     };
   });
+  next();
 };
